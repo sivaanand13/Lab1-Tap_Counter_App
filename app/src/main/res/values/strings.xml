@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lab1-Tap_Counter_App</string>
+    <string name="paw_button_content_desc">Paw Button</string>
+    <string name="upgradeMessage">Upgrade to Add 2</string>
+</resources>
