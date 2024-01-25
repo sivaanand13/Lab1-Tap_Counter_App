@@ -10,23 +10,42 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
     var counter = 0
     var increment = 1
+    var upgraded = false
+    var currentGoal = 100;
+    var goalsReached = 0;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val textView = findViewById<TextView>(R.id.counter)
+        val goalView = findViewById<TextView>(R.id.currentGoal)
+        val goalsReachedView = findViewById<TextView>(R.id.goalsReached)
         textView.text = counter.toString()
         val button = findViewById<ImageButton>(R.id.counterButton)
         val upgradeButton = findViewById<Button>(R.id.upgradeButton)
+        upgradeButton.visibility= View.GONE
+        goalView.text = "Goal: $currentGoal"
+        goalsReachedView.text = "Goals Reached: $goalsReached"
+
         button.setOnClickListener{
             counter += increment
             textView.text = counter.toString()
-            if (counter >= 100) {
+            if (counter >= 100 && !upgraded) {
+                upgraded = true
                 upgradeButton.visibility= View.VISIBLE
-                upgradeButton.setOnClickListener{
-                    increment = 2
-                }
+
             }
+            if (counter >= currentGoal) {
+                currentGoal += 100
+                goalsReached ++
+                goalView.text = "Goal: $currentGoal"
+                goalsReachedView.text = "Goal Reached: $goalsReached"
+            }
+        }
+
+        upgradeButton.setOnClickListener{
+            increment = 2
+            upgradeButton.visibility= View.GONE
         }
     }
     /*
