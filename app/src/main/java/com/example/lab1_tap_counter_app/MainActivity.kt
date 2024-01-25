@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             }
             if (counter >= currentGoal) {
-                currentGoal += 100
+                currentGoal *= 2
                 goalsReached ++
                 goalView.text = "Goal: $currentGoal"
                 goalsReachedView.text = "Goal Reached: $goalsReached"
